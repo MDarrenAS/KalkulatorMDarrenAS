@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <title>Kalkulator Sederhana</title>
+        <style>
+            body {
+                background-color: rgb(2, 2, 70);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                flex-direction: column;
+                font-family: "Arial", sans-serif;
+            }
+            h1 {
+                color: white;
+                font-family: "Nidus Sans", monospace;
+            }
+            .calculator {
+                border-radius: 10px;
+                background-color: rgb(219, 219, 219);
+                padding: 20px;
+                box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.7);
+            }
+            button {
+                width: 70px;
+                height: 50px;
+                font-size: 18px;
+                margin: 5px;
+                cursor: pointer;
+                border-radius: 5px;
+                border: none;
+                transition: transform 0.2s, background-color 0.2s;
+                font-family: "Courier New", monospace;
+            }
+            button:hover {
+                transform: scale(1.2);
+                background-color: rgb(180, 180, 180);
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            }
+            #display {
+                background-color: black;
+                border-radius: 5px;
+                color: white;
+                text-align: right;
+                padding: 10px;
+                font-size: 40px;
+                min-width: 280px;
+                font-family: "Courier New", monospace;
+            }
+            .equal {
+                height: 250px; 
+                background-color: green;
+                color: white;
+                font-size: 22px;
+            }
+            .equal:hover {
+                background-color: darkgreen;
+                transform: scale(1.1);
+            }
+            .clear {
+                background-color: red;
+                color: white;
+            }
+            .clear:hover {
+                background-color: darkred;
+            }
+            .operator {
+                background-color: gray;
+                color: white;
+            }
+            .operator:hover {
+                background-color: darkgray;
+            }
+        </style>
+        <script>
+            let expression = "";
+            function appendValue(value) {
+                expression += value;
+                document.getElementById("display").innerText = expression;
+            }
+            function clearDisplay() {
+                expression = "";
+                document.getElementById("display").innerText = "";
+            }
+            function calculate() {
+                try {
+                    expression = eval(expression).toString();
+                    document.getElementById("display").innerText = expression;
+                } catch (e) {
+                    document.getElementById("display").innerText = "Error";
+                    expression = "";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1><b>KALKULATOR SEDERHANA</b></h1>
+        <div class="calculator">
+            <table>
+                <tr>
+                    <td height="60" colspan="4" id="display"></td>
+                </tr>
+                <tr>
+                    <td><button class="operator" onclick="appendValue('+')">+</button></td>
+                    <td><button class="operator" onclick="appendValue('-')">-</button></td>
+                    <td><button class="operator" onclick="appendValue('*')">×</button></td>
+                    <td><button class="operator" onclick="appendValue('/')">÷</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="appendValue('7')">7</button></td>
+                    <td><button onclick="appendValue('8')">8</button></td>
+                    <td><button onclick="appendValue('9')">9</button></td>
+                    <td rowspan="4"><button class="equal" onclick="calculate()">=</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="appendValue('4')">4</button></td>
+                    <td><button onclick="appendValue('5')">5</button></td>
+                    <td><button onclick="appendValue('6')">6</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="appendValue('1')">1</button></td>
+                    <td><button onclick="appendValue('2')">2</button></td>
+                    <td><button onclick="appendValue('3')">3</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="appendValue('.')">.</button></td>
+                    <td><button onclick="appendValue('0')">0</button></td>
+                    <td><button class="clear" onclick="clearDisplay()">C</button></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
