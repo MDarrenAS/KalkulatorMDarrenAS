@@ -20,8 +20,8 @@
             }
             .calculator {
                 border-radius: 10px;
-                background-color: rgb(199, 195, 195);
-                padding: 10px;
+                background-color: rgb(219, 219, 219);
+                padding: 20px;
                 box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.7);
             }
             button {
@@ -86,13 +86,22 @@
                 
                 let maxLength = 12;
                 let baseFontSize = 40;
+                let minFontSize = 20;
                 if (expression.length > maxLength) {
-                    display.style.fontSize = `${baseFontSize - (expression.length - maxLength) * 2}px`;
+                    let newSize = baseFontSize - (expression.length - maxLength) * 2;
+                    display.style.fontSize = `${Math.max(newSize, minFontSize)}px`;
+                    if (newSize === minFontSize) {
+                        alert("Calculator is full");
+                    }
                 } else {
                     display.style.fontSize = "40px";
                 }
             }
             function appendValue(value) {
+                if (expression.length >= 20) {
+                    alert("Calculator is full");
+                    return;
+                }
                 expression += value;
                 updateDisplay();
             }
